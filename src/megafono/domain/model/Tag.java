@@ -1,8 +1,13 @@
 package megafono.domain.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tag {
+public class Tag implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private int id = 0;
 	private Tag superior;
 	private ArrayList<Tag> subTags;

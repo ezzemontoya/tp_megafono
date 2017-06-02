@@ -42,8 +42,11 @@ public class VentanaTags extends VerticalLayout implements View{
 			@Override
 			public void buttonClick(ClickEvent event) {
 				String tagAux = tag.getValue();
-//				getUI().getNavigator().navigateTo(VentanaExito.NAME);
-				tagService.guardar(new Tag(tagAux));
+				System.out.println(tag.getValue());
+				Tag aux = new Tag(tag.getValue());
+				System.out.println(aux.toString());
+				tagService.guardar(aux);
+				System.out.println("Guardado");
 				Notification.show("Tag "+ tagAux + "guardado", Type.TRAY_NOTIFICATION);
 			}
 		});

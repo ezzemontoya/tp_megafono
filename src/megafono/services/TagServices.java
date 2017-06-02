@@ -1,12 +1,11 @@
 package megafono.services;
 
-import megafono.dao.TagDAO;
 import megafono.dao.implementacion.TagDAONeodatis;
 import megafono.domain.model.Tag;
 
 public class TagServices {
 
-	private TagDAO tagDAO;
+	private TagDAONeodatis tagDAO;
 	private static TagServices tagService;
 
 	private TagServices() {
@@ -21,7 +20,9 @@ public class TagServices {
 	}
 
 	public void guardar(Tag tag){
+		System.out.println("Ingreso a guardar");
 		tagDAO.guardar(tag);
+		System.out.println("Guardado");
 	}
 	
 }
