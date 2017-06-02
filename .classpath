@@ -56,6 +56,7 @@
 	<classpathentry kind="lib" path="validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="lib" path="xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/neodatis-odb-1.9.30.689.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>

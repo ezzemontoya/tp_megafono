@@ -25,8 +25,7 @@ public class VentanaTags extends HorizontalLayout implements View{
 	
 	public VentanaTags(){
 		setSizeFull();
-		
-		final Auxiliar auxi = new Auxiliar(); 
+		 
 		
 		final Tree arbol = new Tree("Tags");
 		addComponents(arbol);
@@ -47,13 +46,11 @@ public class VentanaTags extends HorizontalLayout implements View{
 			@Override
 			public void buttonClick(ClickEvent event) {
 				String tagAux = tag.getValue();
-				System.out.println(tag.getValue());
 				Tag aux = new Tag(tag.getValue());
-				//TODO - arreglar esto!!!!!
-//				tagService.guardar(aux);
-				auxi.misTags.add(aux);
+				tagService.guardar(aux);
 				arbol.addItem(tagAux);
-				Notification.show("Tag "+ tagAux + " guardado", Type.TRAY_NOTIFICATION);
+				Notification.show("Tag "+ tagAux +" " +"guardado", Type.TRAY_NOTIFICATION);
+				tag.setValue("");
 				
 			}
 		});
