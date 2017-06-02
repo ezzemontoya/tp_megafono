@@ -13,10 +13,10 @@ import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
 @Theme("valo")
-public class Ejercicio1 extends UI {
+public class VentanaPrincipal extends UI {
 
 	@WebServlet(value = "/*", asyncSupported = true)
-	@VaadinServletConfiguration(productionMode = false, ui = Ejercicio1.class)
+	@VaadinServletConfiguration(productionMode = false, ui = VentanaPrincipal.class)
 	public static class Servlet extends VaadinServlet {
 	}
 
