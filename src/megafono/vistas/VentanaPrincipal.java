@@ -30,8 +30,8 @@ public class VentanaPrincipal extends UI {
 		Navigator navigator;
 		navigator = new Navigator(this, this);
 		// Y creamos y registramos las views (pantallas)
-		navigator.addView(VentanasTexto.NAME, new VentanasTexto());
-		navigator.addView(VentanaExito.NAME, new VentanaExito());
+		navigator.addView(VentanaTags.NAME, new VentanaTags());
+//		navigator.addView(VentanaExito.NAME, new VentanaExito());
 		
 
 	}

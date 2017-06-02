@@ -4,34 +4,36 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-public class VentanasTexto extends VerticalLayout implements View{
+import megafono.domain.model.Tag;
+import megafono.services.TagServices;
+
+public class VentanaTags extends VerticalLayout implements View{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	protected static final String NAME = "";
-
-	public VentanasTexto(){
+	
+	private TagServices tagService = TagServices.getTagService();
+	
+	public VentanaTags(){
 		setSizeFull();
 		
-		TextField text1 = new TextField("Texto 1");
-		addComponent(text1);
-		TextField text2 = new TextField("Texto 2");
-		addComponent(text2);
-		TextField text3= new TextField("Texto 3");
-		addComponent(text3);
+		final TextField tag = new TextField("Ingrese el nuevo tag");
+		addComponent(tag);
 		
 		HorizontalLayout botones = new HorizontalLayout();
 		addComponent(botones);
-		Button feLimite = new Button("Fecha Limite");
-		botones.addComponent(feLimite);
-		Button continuar = new Button("Continuar");
-		continuar.addClickListener(new Button.ClickListener() {
+
+		Button guardarTag = new Button("Guardar");
+		guardarTag.addClickListener(new Button.ClickListener() {
 			/**
 			 * 
 			 */
@@ -39,10 +41,13 @@ public class VentanasTexto extends VerticalLayout implements View{
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(VentanaExito.NAME);
+				String tagAux = tag.getValue();
+//				getUI().getNavigator().navigateTo(VentanaExito.NAME);
+				tagService.guardar(new Tag(tagAux));
+				Notification.show("Tag "+ tagAux + "guardado", Type.TRAY_NOTIFICATION);
 			}
 		});
-		botones.addComponent(continuar);
+		botones.addComponent(guardarTag);
 	}
 	
 	

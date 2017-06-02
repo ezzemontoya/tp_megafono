@@ -31,7 +31,7 @@ public class VentanaExito extends VerticalLayout implements View{
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(VentanasTexto.NAME);
+				getUI().getNavigator().navigateTo(VentanaTags.NAME);
 			}
 		});
 		botones.addComponent(volver);
