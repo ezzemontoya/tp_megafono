@@ -20,9 +20,7 @@ public class TagServices {
 	}
 
 	public void guardar(Tag tag){
-		System.out.println("Ingreso a guardar");
 		tagDAO.guardar(tag);
-		System.out.println("Guardado");
 	}
 
 }
