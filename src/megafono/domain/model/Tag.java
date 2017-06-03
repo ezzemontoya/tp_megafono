@@ -19,16 +19,6 @@ public class Tag implements Serializable{
 	}
 
 	/**
-	 * Constructor Vacio
-	 */
-	public Tag() {
-		this.idTag=Tag.getId();
-		this.superior = null;
-		this.subTags = new ArrayList<Tag>();
-		this.nombre = "";
-	}
-
-	/**
 	 * Constructor solo con Nombre
 	 * 
 	 * @param nombre
@@ -37,7 +27,7 @@ public class Tag implements Serializable{
 		this.idTag=Tag.getId();
 		this.superior = null;
 		this.subTags = new ArrayList<Tag>();
-		this.nombre = nombre;
+		this.nombre = nombre.toUpperCase();
 	}
 
 	/**
@@ -50,7 +40,7 @@ public class Tag implements Serializable{
 		this.idTag=Tag.getId();
 		this.superior = superior;
 		this.subTags = new ArrayList<Tag>();
-		this.nombre = nombre;
+		this.nombre = nombre.toUpperCase();
 		superior.agregarTagHijo(this);
 	}
 
@@ -78,7 +68,7 @@ public class Tag implements Serializable{
 		for(Tag t : this.subTags){
 			hijos += t.toString();
 		}
-		return this.nombre + "[" + hijos + "]";
+		return (this.nombre + "[" + hijos + "]").toUpperCase();
 	}
 
 	public Tag getSuperior() {

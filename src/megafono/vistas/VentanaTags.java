@@ -4,14 +4,12 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.VerticalLayout;
 
-import megafono.domain.model.Tag;
 import megafono.services.TagServices;
 
 public class VentanaTags extends HorizontalLayout implements View {
@@ -26,18 +24,20 @@ public class VentanaTags extends HorizontalLayout implements View {
 
 	public VentanaTags() {
 		setSizeFull();
-
+		
 		final Tree arbol = new Tree("Tags");
 		addComponents(arbol);
-		tagService.procesarArbol(arbol);
-
+//		tagService.procesarArbol(arbol);
+		
 		VerticalLayout textfiles = new VerticalLayout();
 		addComponent(textfiles);
 		final TextField tag = new TextField("Ingrese el nuevo tag");
 		textfiles.addComponent(tag);
-		final TextField sup = new TextField("Ingrese el tag superior");
-		textfiles.addComponent(sup);
+		final ComboBox superior = new ComboBox("Seleccione Tag superior");
+		textfiles.addComponent(superior);
 
+		tagService.procesarArbol(arbol,superior);
+		
 		HorizontalLayout botones = new HorizontalLayout();
 		addComponent(botones);
 
@@ -50,7 +50,7 @@ public class VentanaTags extends HorizontalLayout implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				tagService.actualizarArbol(arbol, tag.getValue(), sup.getValue());
+				tagService.actualizarArbol(arbol, tag.getValue(),superior);
 			}
 		});
 		botones.addComponent(guardarTag);
