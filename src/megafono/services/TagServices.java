@@ -2,7 +2,9 @@ package megafono.services;
 
 import java.util.ArrayList;
 
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Tree;
+import com.vaadin.ui.Notification.Type;
 
 import megafono.dao.implementacion.TagDAONeodatis;
 import megafono.domain.model.Tag;
@@ -33,9 +35,17 @@ public class TagServices {
 
 	public void procesarArbol(Tree arbol) {
 		ArrayList<Tag> tags = this.obtenerTags();
+		agregarTagsEn(arbol, tags);
+		acomodarSuperiores(arbol, tags);
+	}
+
+	private void agregarTagsEn(Tree arbol, ArrayList<Tag> tags) {
 		for (Tag t : tags){
 			arbol.addItem(t.getNombre());
 		}
+	}
+
+	private void acomodarSuperiores(Tree arbol, ArrayList<Tag> tags) {
 		for (Tag t : tags){
 			if(t.getSuperior() != null){
 				arbol.setParent(t.getNombre(),t.getNombreSuperior());
@@ -43,4 +53,19 @@ public class TagServices {
 		}
 	}
 
+	public void actualizarArbol (Tree arbol, String tag, String superior){
+		if(superior == "" && tag == ""){
+			Notification.show("Debe ingresar un tag para poder guardar", Type.TRAY_NOTIFICATION);
+			return;
+		}
+		if(superior == "" && tag != ""){
+			this.guardar(new Tag(tag));
+			Notification.show("Se guardo el tag: " + tag, Type.TRAY_NOTIFICATION);
+		}
+		if(superior != "" & tag != "" ){
+			this.guardar(new Tag(tag, new Tag(superior)));
+			Notification.show("Se guardo el tag: " + tag +" en: " +superior, Type.TRAY_NOTIFICATION);
+		}
+		this.procesarArbol(arbol);
+	}
 }
