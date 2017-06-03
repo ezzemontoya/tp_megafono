@@ -2,6 +2,8 @@ package megafono.services;
 
 import java.util.ArrayList;
 
+import com.vaadin.ui.Tree;
+
 import megafono.dao.implementacion.TagDAONeodatis;
 import megafono.domain.model.Tag;
 
@@ -27,6 +29,18 @@ public class TagServices {
 
 	public ArrayList<Tag> obtenerTags() {
 		return tagDAO.obtenerTags();
+	}
+
+	public void procesarArbol(Tree arbol) {
+		ArrayList<Tag> tags = this.obtenerTags();
+		for (Tag t : tags){
+			arbol.addItem(t.getNombre());
+		}
+		for (Tag t : tags){
+			if(t.getSuperior() != null){
+				arbol.setParent(t.getNombre(),t.getNombreSuperior());
+			}
+		}
 	}
 
 }

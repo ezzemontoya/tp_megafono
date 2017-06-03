@@ -29,7 +29,7 @@ public class VentanaTags extends HorizontalLayout implements View {
 
 		final Tree arbol = new Tree("Tags");
 		addComponents(arbol);
-		arbol.addItems(tagService.obtenerTags());
+		tagService.procesarArbol(arbol);
 
 		VerticalLayout textfiles = new VerticalLayout();
 		addComponent(textfiles);

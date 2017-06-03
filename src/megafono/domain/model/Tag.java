@@ -84,6 +84,10 @@ public class Tag implements Serializable{
 	public Tag getSuperior() {
 		return superior;
 	}
+	
+	public String getNombreSuperior(){
+		return this.superior.getNombre();
+	}
 
 	public void setSuperior(Tag superior) {
 //		this.superior.borrarTagHijo(this);
