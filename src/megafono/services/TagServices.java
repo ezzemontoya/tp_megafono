@@ -1,5 +1,7 @@
 package megafono.services;
 
+import java.util.ArrayList;
+
 import megafono.dao.implementacion.TagDAONeodatis;
 import megafono.domain.model.Tag;
 
@@ -19,8 +21,12 @@ public class TagServices {
 		return tagService;
 	}
 
-	public void guardar(Tag tag){
+	public void guardar(Tag tag) {
 		tagDAO.guardar(tag);
+	}
+
+	public ArrayList<Tag> obtenerTags() {
+		return tagDAO.obtenerTags();
 	}
 
 }

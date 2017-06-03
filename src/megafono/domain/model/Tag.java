@@ -74,7 +74,11 @@ public class Tag implements Serializable{
 	
 	@Override
 	public String toString(){
-		return this.nombre;
+		String hijos = "";
+		for(Tag t : this.subTags){
+			hijos += t.toString();
+		}
+		return this.nombre + "[" + hijos + "]";
 	}
 
 	public Tag getSuperior() {
