@@ -6,43 +6,39 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.VerticalLayout;
 
 import megafono.services.TagServices;
 
-public class VentanaTags extends HorizontalLayout implements View {
+public class VentanaTagsBorrar extends HorizontalLayout implements View {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected static final String NAME = "";
+	protected static final String NAME = "borrarTag";
 
 	private TagServices tagService = TagServices.getTagService();
 
-	public VentanaTags() {
+	public VentanaTagsBorrar() {
 		setSizeFull();
-		
+
 		final Tree arbol = new Tree("Tags");
 		addComponents(arbol);
-//		tagService.procesarArbol(arbol);
-		
+
 		VerticalLayout textfiles = new VerticalLayout();
 		addComponent(textfiles);
-		final TextField tag = new TextField("Ingrese el nuevo tag");
-		textfiles.addComponent(tag);
-		final ComboBox superior = new ComboBox("Seleccione Tag superior");
-		textfiles.addComponent(superior);
+		final ComboBox aBorrar = new ComboBox("Seleccione Tag a borrar");
+		textfiles.addComponent(aBorrar);
 
-		tagService.procesarArbol(arbol,superior);
-		
+		tagService.procesarArbol(arbol, aBorrar);
+
 		HorizontalLayout botones = new HorizontalLayout();
 		addComponent(botones);
 
-		Button guardarTag = new Button("Guardar");
-		guardarTag.addClickListener(new Button.ClickListener() {
+		Button borrarTag = new Button("Borrar");
+		borrarTag.addClickListener(new Button.ClickListener() {
 			/**
 			 * 
 			 */
@@ -50,10 +46,24 @@ public class VentanaTags extends HorizontalLayout implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				tagService.actualizarArbol(arbol, tag.getValue(),superior);
+				tagService.gestionarBajas(arbol, aBorrar);
 			}
 		});
-		botones.addComponent(guardarTag);
+		botones.addComponent(borrarTag);
+
+		Button volver = new Button("Volver");
+		volver.addClickListener(new Button.ClickListener() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(VentanaTagsAgregar.NAME);
+			}
+		});
+		botones.addComponent(volver);
 	}
 
 	@Override
